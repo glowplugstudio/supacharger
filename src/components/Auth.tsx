@@ -91,7 +91,7 @@ export const Auth: React.FC<AuthProps> = ({ view, title }) => {
       <div className="col-span-full sm:col-start-2 sm:col-span-4">
         <SupabaseAuth
           supabaseClient={supabaseClient}
-          providers={["google", "facebook"]}
+          providers={[]} // set to ["google", "facebook", ...] if needed
           appearance={{
             theme: customAuthUiTheme,
             className: {

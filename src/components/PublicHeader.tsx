@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Button } from "./ui/button";
 
 export const PublicHeader = () => {
   return (
@@ -8,7 +9,9 @@ export const PublicHeader = () => {
         <Link href="/dashboard">Dashboard</Link>
       </div>
       <div className="flex flex-row gap-4 items-center justify-right">
-        <Link href="/sign-in">Sign in</Link>
+        <Button asChild>
+          <Link href="/sign-in">Sign in</Link>
+        </Button>
       </div>
     </div>
   );

@@ -4,6 +4,9 @@ import { supabaseClient } from "@/lib";
 import { capitalCase } from "change-case";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { Button } from "./ui/button";
+import { Input } from "./ui/input";
+import { Label } from "./ui/label";
 
 type FormFields = {
   newPassword: string;
@@ -55,20 +58,18 @@ export const UpdatePassword: React.FC<UpdatePasswordProps> = ({
             <form onSubmit={onSubmit}>
               <div className="flex flex-col gap-4">
                 <div className="flex flex-col">
-                  <label htmlFor="newPassword">New password</label>
-                  <input
-                    className="px-4 py-2 border border-secondary-200 rounded-xl bg-transparent"
+                  <Label htmlFor="newPassword">New password</Label>
+                  <Input
                     type="password"
                     placeholder="New password"
                     {...register("newPassword", { required: true })}
                   />
                 </div>
-                <button
-                  className="px-4 py-2 bg-primary border border-secondary-200 rounded-2xl"
+                <Button
                   type="submit"
                 >
                   Update password
-                </button>
+                </Button>
               </div>
             </form>
           </>

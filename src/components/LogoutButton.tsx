@@ -3,6 +3,7 @@
 import { supabaseClient } from "@/lib";
 import { useRouter } from "next/navigation";
 import { useCallback } from "react";
+import { Button } from "./ui/button";
 
 export const LogoutButton = () => {
   const router = useRouter();
@@ -14,11 +15,10 @@ export const LogoutButton = () => {
   }, [router]);
 
   return (
-    <button
-      className="bg-secondary border border-secondary-200 rounded-md p-2"
+    <Button
       onClick={handleLogout}
     >
       Logout
-    </button>
+    </Button>
   );
 };

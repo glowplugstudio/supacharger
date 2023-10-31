@@ -3,6 +3,7 @@
 import { supabaseClient } from "@/lib";
 import { useRouter } from "next/navigation";
 import { useCallback } from "react";
+import { Button } from "./ui/button";
 
 export const SuspendAccount = () => {
   const router = useRouter();
@@ -38,12 +39,12 @@ export const SuspendAccount = () => {
           will make you unable to use the main functionalities of this website.
         </p>
       </div>
-      <button
-        className="px-4 py-2 bg-red-800 border border-red-300 rounded-2xl"
+      <Button
+        variant={"destructive"}
         onClick={handleOnClick}
       >
         Suspend account
-      </button>
+      </Button>
     </div>
   );
 };

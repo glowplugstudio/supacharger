@@ -4,6 +4,9 @@ import { supabaseClient } from "@/lib";
 import { capitalCase } from "change-case";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { Button } from "./ui/button";
+import { Input } from "./ui/input";
+import { Label } from "./ui/label";
 
 type FormFields = {
   newEmail: string;
@@ -61,9 +64,8 @@ export const UpdateEmail: React.FC<UpdateEmailProps> = ({
       <div className="flex flex-col gap-4">
         <h2 className="text-center text-2xl col-span-full">Update email</h2>
         <div className="flex flex-col">
-          <label htmlFor="email">Current email</label>
-          <input
-            className="px-4 py-2 border border-secondary-200 rounded-xl bg-gray-950"
+          <Label htmlFor="email">Current email</Label>
+          <Input
             type="email"
             placeholder="Current email"
             value={userEmail}
@@ -85,9 +87,8 @@ export const UpdateEmail: React.FC<UpdateEmailProps> = ({
         ? (
           <>
             <div className="flex flex-col">
-              <label htmlFor="email">Current email</label>
-              <input
-                className="px-4 py-2 border border-secondary-200 rounded-xl bg-gray-900"
+              <Label htmlFor="email">Current email</Label>
+              <Input
                 type="email"
                 placeholder="Current email"
                 value={userEmail}
@@ -97,20 +98,18 @@ export const UpdateEmail: React.FC<UpdateEmailProps> = ({
             <form onSubmit={onSubmit}>
               <div className="flex flex-col gap-4">
                 <div className="flex flex-col">
-                  <label htmlFor="newEmail">New email</label>
-                  <input
-                    className="px-4 py-2 border border-secondary-200 rounded-xl bg-transparent"
+                  <Label htmlFor="newEmail">New email</Label>
+                  <Input
                     type="email"
                     placeholder="New email"
                     {...register("newEmail", { required: true })}
                   />
                 </div>
-                <button
-                  className="px-4 py-2 bg-primary border border-secondary-200 rounded-2xl"
+                <Button
                   type="submit"
                 >
                   Update email
-                </button>
+                </Button>
               </div>
             </form>
           </>

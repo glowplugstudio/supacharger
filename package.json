@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "supabase:start": "supabase start",
-    "supabase:stop": "supabase stop"
+    "supabase:stop": "supabase stop",
+    "codegen:supabase": "supabase gen types typescript --local --schema public > src/types/supabase.ts"
   },
   "dependencies": {
     "class-variance-authority": "^0.7.0",

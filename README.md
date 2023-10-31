@@ -45,6 +45,16 @@ Finally, open [http://localhost:3000](http://localhost:3000) with your browser.
 
 This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
+## Typing
+
+Supabase offers automatic code generation based on the tables your database. To generate types, run:
+
+```bash
+pnpm codegen:supabase
+```
+
+See Supabase CLI gen [docs](https://supabase.com/docs/reference/cli/supabase-gen-types).
+
 ## Database features
 
 Within your Supabase database, we have provided two PostgreSQL functions that can help you defining RLS policies and alter data on triggers.

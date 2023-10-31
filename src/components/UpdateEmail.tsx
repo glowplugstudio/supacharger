@@ -105,9 +105,7 @@ export const UpdateEmail: React.FC<UpdateEmailProps> = ({
                     {...register("newEmail", { required: true })}
                   />
                 </div>
-                <Button
-                  type="submit"
-                >
+                <Button type="submit">
                   Update email
                 </Button>
               </div>

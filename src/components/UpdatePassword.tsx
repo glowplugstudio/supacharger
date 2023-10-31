@@ -65,9 +65,7 @@ export const UpdatePassword: React.FC<UpdatePasswordProps> = ({
                     {...register("newPassword", { required: true })}
                   />
                 </div>
-                <Button
-                  type="submit"
-                >
+                <Button type="submit">
                   Update password
                 </Button>
               </div>

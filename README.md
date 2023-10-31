@@ -46,6 +46,10 @@ Finally, open [http://localhost:3000](http://localhost:3000) with your browser.
 
 This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
+## Authentication
+
+We use [Supabase Auth UI](https://github.com/supabase/auth-ui) for auth components. To configure which providers to use, change the `AUTH_PROVIDERS` constant in the [Auth.tsx](./src/components/Auth.tsx) component.
+
 ## Typing
 
 Supabase offers automatic code generation based on the tables your database. To generate types, run:
@@ -131,3 +135,11 @@ See [delete_storage_object_functions.sql](./supabase/migrations/00000000000005_d
 These functions are enabled by default on `public.profiles` table on the `avatar_url` column with a trigger.
 
 See [delete_old_files_trigger.sql](./supabase/migrations/00000000000006_delete_old_files_triggers.sql) migration for more details.
+
+## Formatting
+
+We use [dprint](https://dprint.dev/) to format our code. To format your code, run:
+
+```bash
+pnpm format
+```

@@ -6,8 +6,12 @@ import { supabaseClient } from "@/lib";
 import { tailwindConfig } from "@/lib/utils";
 import { Auth as SupabaseAuth } from "@supabase/auth-ui-react";
 import { Theme, ThemeMinimal, ViewType } from "@supabase/auth-ui-shared";
+import type { Provider as SupabaseAuthProvider } from "@supabase/supabase-js";
 import { useRouter } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
+
+// See https://supabase.com/docs/reference/javascript/auth-signinwithoauth for supported providers.
+const AUTH_PROVIDERS: SupabaseAuthProvider[] = []; // set to ["google", "facebook", ...] if needed
 
 const primaryColor = tailwindConfig.theme!.colors!["primary"] as Record<
   string,
@@ -91,7 +95,7 @@ export const Auth: React.FC<AuthProps> = ({ view, title }) => {
       <div className="col-span-full sm:col-start-2 sm:col-span-4">
         <SupabaseAuth
           supabaseClient={supabaseClient}
-          providers={[]} // set to ["google", "facebook", ...] if needed
+          providers={AUTH_PROVIDERS}
           appearance={{
             theme: customAuthUiTheme,
             className: {

@@ -1,0 +1,7 @@
+.supabase-auth-ui-container-no-signin a[href="#auth-sign-in"] {
+  display: none;
+}
+
+.supabase-auth-ui-container-no-signup a[href="#auth-sign-up"] {
+  display: none;
+}

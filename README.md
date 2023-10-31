@@ -1,6 +1,7 @@
 # supacharger
 
 Stack used:
+
 - [Next.js](https://nextjs.org/)
 - [TypeScript](https://www.typescriptlang.org/)
 - [TailwindCSS](https://tailwindcss.com/)
@@ -22,18 +23,18 @@ Second, start the local Supabase environment. To do so, follow these steps:
 1. Install [Docker](https://www.docker.com/).
 2. Setup the environment variables (.e.g the external auth providers secrets), see [.env.example](./.env.example) for details.
 3. Start the local Supabase environment:
-    ```bash
-    pnpm supabase:start
-    ```
-    This command downloads all the Docker containers needed by Supabase and sets up the local Supabase environment. It also applies the default migrations, that can be found in [supabase/migrations](./supabase/migrations). See [Database configuration](#database-configuration) below for more details.
-    > If you're getting errors like `Error response from daemon...`, just wait a few seconds and try again.
+   ```bash
+   pnpm supabase:start
+   ```
+   This command downloads all the Docker containers needed by Supabase and sets up the local Supabase environment. It also applies the default migrations, that can be found in [supabase/migrations](./supabase/migrations). See [Database configuration](#database-configuration) below for more details.
+   > If you're getting errors like `Error response from daemon...`, just wait a few seconds and try again.
 4. The previous command gives you some URLs and keys for your Supabase instance. Copy the `API URL` and the `anon key` into your `.env` file accordingly. These values are used by Next.js to connect to your Supabase instance.
 5. Access the local Supabase Studio (`Studio URL` in the output of the previous command, defaults to [http://127.0.0.1:54323](http://127.0.0.1:54323)) and run this SQL command in the [SQL editor](http://127.0.0.1:54323/project/default/sql):
-    ```sql
-    # read the variables from the output of the previous command
-    select vault.create_secret('<YOUR_SUPABASE_URL_WITHOUT_TRAILING_SLASH>', 'SUPABASE_URL');
-    select vault.set_secret('<YOUR_SUPABASE_SERVICE_ROLE_KEY>', 'SUPABASE_SERVICE_ROLE_KEY');
-    ```
+   ```sql
+   # read the variables from the output of the previous command
+   select vault.create_secret('<YOUR_SUPABASE_URL_WITHOUT_TRAILING_SLASH>', 'SUPABASE_URL');
+   select vault.set_secret('<YOUR_SUPABASE_SERVICE_ROLE_KEY>', 'SUPABASE_SERVICE_ROLE_KEY');
+   ```
 
 Third, run the development server:
 
@@ -121,6 +122,7 @@ See [log_activity_helpers.sql](./supabase/migrations/00000000000004_log_activity
 ### Automatically delete files from storage
 
 At some point in your implementation, you'll need to use [Supabase Storage](https://supabase.com/docs/guides/storage). You usually set `*_url` columns in your tables to keep track of the current location of the file, but deleting the file from storage is a manual operation. Two functions are provided to help you with that:
+
 - `private.delete_storage_object(bucket text, object text)`: This function deletes the given object from the given bucket. For example, if a file is located at `/storage/v1/object/public/avatars/picture.jpg` (Supabase Storage API details [here](https://github.com/supabase/storage-api)), call the function with `private.delete_storage_object('avatars', 'picture.jpg')`.
 - `private.delete_storage_object_from_url(object_url text)`: This function deletes the file at the given URL. The object URL can be a full `https://...` URL or a relative path, such as `/storage/v1/object/...` or `/{bucket_name}/{object_full_path}`.
 

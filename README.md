@@ -4,6 +4,7 @@ Stack used:
 - [Next.js](https://nextjs.org/)
 - [TypeScript](https://www.typescriptlang.org/)
 - [TailwindCSS](https://tailwindcss.com/)
+- [shadcn/ui](https://ui.shadcn.com/) (available at `pnpm exec shadcn-ui`)
 - [Supabase](https://supabase.com/)
 
 ## Getting Started

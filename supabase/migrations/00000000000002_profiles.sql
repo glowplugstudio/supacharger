@@ -33,13 +33,6 @@ alter table "public"."profiles" add constraint "profiles_updated_by_fkey" FOREIG
 
 alter table "public"."profiles" validate constraint "profiles_updated_by_fkey";
 
-CREATE OR REPLACE FUNCTION public.is_current_profile_suspended()
- RETURNS boolean
- LANGUAGE sql
- STABLE SECURITY DEFINER
-AS $function$select profile_is_suspended from profiles where user_id = auth.uid();$function$
-;
-
 CREATE OR REPLACE FUNCTION public.handle_new_user()
  RETURNS trigger
  LANGUAGE plpgsql
@@ -75,6 +68,21 @@ create trigger on_auth_user_created
   after insert on auth.users
   for each row execute procedure public.handle_new_user();
 
+
+CREATE OR REPLACE FUNCTION private.is_profile_suspended(profile_id uuid)
+ RETURNS boolean
+ LANGUAGE sql
+ STABLE SECURITY DEFINER
+AS $function$select p.profile_is_suspended from public.profiles p where p.user_id = profile_id;$function$
+;
+
+CREATE OR REPLACE FUNCTION public.is_current_profile_suspended()
+ RETURNS boolean
+ LANGUAGE sql
+ STABLE SECURITY DEFINER
+AS $function$select private.is_profile_suspended(auth.uid());$function$
+;
+
 create policy "authenticated can only select their profile"
 on "public"."profiles"
 as permissive
@@ -90,18 +98,3 @@ for update
 to authenticated
 using (((user_id = auth.uid()) AND (NOT is_current_profile_suspended())))
 with check ((user_id = auth.uid()));
-
-
-CREATE OR REPLACE FUNCTION private.is_profile_suspended(profile_id uuid)
- RETURNS boolean
- LANGUAGE sql
- STABLE SECURITY DEFINER
-AS $function$select p.profile_is_suspended from public.profiles p where p.user_id = profile_id;$function$
-;
-
-CREATE OR REPLACE FUNCTION public.is_current_profile_suspended()
- RETURNS boolean
- LANGUAGE sql
- STABLE SECURITY DEFINER
-AS $function$select private.is_profile_suspended(auth.uid());$function$
-;

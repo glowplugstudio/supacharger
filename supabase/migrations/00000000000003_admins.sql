@@ -25,11 +25,18 @@ alter table "public"."admins" add constraint "admins_updated_by_fkey" FOREIGN KE
 
 alter table "public"."admins" validate constraint "admins_updated_by_fkey";
 
+CREATE OR REPLACE FUNCTION private.is_profile_admin(profile_id uuid)
+ RETURNS boolean
+ LANGUAGE sql
+ STABLE SECURITY DEFINER
+AS $function$select exists(select 1 from public.admins a where a.admin_id = profile_id)$function$
+;
+
 CREATE OR REPLACE FUNCTION public.is_current_profile_admin()
  RETURNS boolean
  LANGUAGE sql
  STABLE SECURITY DEFINER
-AS $function$select exists(select 1 from admins where admin_id = auth.uid())$function$
+AS $function$select private.is_profile_admin(auth.uid())$function$
 ;
 
 create policy "admins can do all operations"
@@ -46,17 +53,3 @@ as permissive
 for all
 to authenticated
 using (is_current_profile_admin());
-
-CREATE OR REPLACE FUNCTION private.is_profile_admin(profile_id uuid)
- RETURNS boolean
- LANGUAGE sql
- STABLE SECURITY DEFINER
-AS $function$select exists(select 1 from public.admins a where a.admin_id = profile_id)$function$
-;
-
-CREATE OR REPLACE FUNCTION public.is_current_profile_admin()
- RETURNS boolean
- LANGUAGE sql
- STABLE SECURITY DEFINER
-AS $function$select private.is_profile_admin(auth.uid())$function$
-;

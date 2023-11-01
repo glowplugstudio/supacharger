@@ -2,7 +2,7 @@
 
 import "./Auth.css";
 
-import { supabaseClient } from "@/lib";
+import { supabaseClient } from "@/lib/supabase/client";
 import { tailwindConfig } from "@/lib/utils";
 import { Auth as SupabaseAuth } from "@supabase/auth-ui-react";
 import { Theme, ThemeMinimal, ViewType } from "@supabase/auth-ui-shared";

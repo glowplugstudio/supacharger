@@ -1,6 +1,6 @@
 "use client";
 
-import { supabaseClient } from "@/lib";
+import { supabaseClient } from "@/lib/supabase/client";
 import { capitalCase } from "change-case";
 import { useState } from "react";
 import { useForm } from "react-hook-form";

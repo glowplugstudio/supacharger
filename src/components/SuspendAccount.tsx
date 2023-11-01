@@ -1,6 +1,6 @@
 "use client";
 
-import { supabaseClient } from "@/lib";
+import { supabaseClient } from "@/lib/supabase/client";
 import { useRouter } from "next/navigation";
 import { useCallback } from "react";
 import { Button } from "./ui/button";

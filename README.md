@@ -130,7 +130,7 @@ At some point in your implementation, you'll need to use [Supabase Storage](http
 - `private.delete_storage_object(bucket text, object text)`: This function deletes the given object from the given bucket. For example, if a file is located at `/storage/v1/object/public/avatars/picture.jpg` (Supabase Storage API details [here](https://github.com/supabase/storage-api)), call the function with `private.delete_storage_object('avatars', 'picture.jpg')`.
 - `private.delete_storage_object_from_url(object_url text)`: This function deletes the file at the given URL. The object URL can be a full `https://...` URL or a relative path, such as `/storage/v1/object/...` or `/{bucket_name}/{object_full_path}`.
 
-See [delete_storage_object_functions.sql](./supabase/migrations/00000000000005_delete_storage_object_function.sql).
+See [delete_storage_object_functions.sql](./supabase/migrations/00000000000005_delete_storage_object_function.sql) migration for more details.
 
 These functions are enabled by default on `public.profiles` table on the `avatar_url` column with a trigger.
 

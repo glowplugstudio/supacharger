@@ -4,8 +4,10 @@ CREATE OR REPLACE FUNCTION public.log_activity_on_insert()
  SECURITY DEFINER
 AS $function$
 	begin
-		NEW.created_by := auth.uid();
 		NEW.created_at := now();
+		NEW.created_by := auth.uid();
+    NEW.updated_at := null;
+    NEW.updated_by := null;
 
 		RETURN NEW;
 	end;
@@ -20,6 +22,8 @@ AS $function$
 	begin
 		NEW.updated_at := now();
 		NEW.updated_by := auth.uid();
+    NEW.created_at := OLD.created_at;
+    NEW.created_by := OLD.created_by;
 
 		RETURN NEW;
 	end;

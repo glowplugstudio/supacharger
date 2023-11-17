@@ -10,7 +10,8 @@
     "supabase:start": "supabase start",
     "supabase:stop": "supabase stop",
     "format": "dprint fmt",
-    "codegen:supabase": "supabase gen types typescript --local --schema public > src/types/supabase.ts && dprint fmt src/types/supabase.ts"
+    "codegen:supabase": "supabase gen types typescript --local --schema public > src/types/supabase.ts && dprint fmt src/types/supabase.ts",
+    "test:db": "supabase test db"
   },
   "dependencies": {
     "@radix-ui/react-label": "^2.0.2",

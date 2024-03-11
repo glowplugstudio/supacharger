@@ -3,7 +3,7 @@
 import "./Auth.css";
 
 import { supabaseClient } from "@/lib/supabase/client";
-import { tailwindConfig } from "@/lib/utils";
+import { colors } from "@/lib/utils";
 import { Auth as SupabaseAuth } from "@supabase/auth-ui-react";
 import { Theme, ThemeMinimal, ViewType } from "@supabase/auth-ui-shared";
 import type { Provider as SupabaseAuthProvider } from "@supabase/supabase-js";
@@ -13,28 +13,21 @@ import { useEffect, useMemo, useState } from "react";
 // See https://supabase.com/docs/reference/javascript/auth-signinwithoauth for supported providers.
 const AUTH_PROVIDERS: SupabaseAuthProvider[] = []; // set to ["google", "facebook", ...] if needed
 
-const primaryColor = tailwindConfig.theme!.colors!["primary"] as Record<
-  string,
-  string
->;
-const secondaryColor = tailwindConfig.theme!.colors!["secondary"] as Record<
-  string,
-  string
->;
+const foregroundColor = colors["foreground"] as string;
+const primaryColor = colors["primary"] as Record<string, string>;
+const secondaryColor = colors["secondary"] as Record<string, string>;
+const destructiveColor = colors["destructive"] as Record<string, string>;
+const accentColor = colors["accent"] as Record<string, string>;
 
 const customAuthUiTheme: Theme = {
   ...ThemeMinimal,
   default: {
     colors: {
       brand: primaryColor["DEFAULT"],
-      brandAccent: "#446153",
-      brandButtonText: "white",
-      messageText: "gray",
-      messageTextDanger: "#bf8a30",
-      defaultButtonBackground: "white",
-      defaultButtonText: "gray",
-      defaultButtonBorder: primaryColor["100"],
-      defaultButtonBackgroundHover: "white",
+      brandAccent: accentColor["DEFAULT"],
+      brandButtonText: primaryColor["foreground"],
+      messageText: foregroundColor,
+      messageTextDanger: destructiveColor["DEFAULT"],
       inputBorder: secondaryColor["100"],
       inputBorderFocus: "#59806d",
       inputBorderHover: primaryColor["200"],

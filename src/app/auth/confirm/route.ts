@@ -1,6 +1,5 @@
 import { createClient } from "@/lib/supabase/server";
 import { type EmailOtpType } from "@supabase/supabase-js";
-import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 
 export async function GET(request: Request) {
@@ -10,8 +9,7 @@ export async function GET(request: Request) {
   const next = searchParams.get("next") ?? "/dashboard"; // URL to redirect to after sign in process completes
 
   if (token_hash && type) {
-    const cookieStore = cookies();
-    const supabase = createClient(cookieStore);
+    const supabase = createClient();
 
     const { error } = await supabase.auth.verifyOtp({
       type,

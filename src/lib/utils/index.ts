@@ -1,1 +1,1 @@
-export { fullConfig as tailwindConfig, colors } from "./tailwind";
+export { colors, fullConfig as tailwindConfig } from "./tailwind";

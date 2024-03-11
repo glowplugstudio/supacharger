@@ -1,11 +1,9 @@
 import { SuspendAccount, UpdateEmail, UpdatePassword } from "@/components";
 import { fetchIsUserSuspended } from "@/lib";
 import { createClient } from "@/lib/supabase/server";
-import { cookies } from "next/headers";
 
 export default async function Page() {
-  const cookieStore = cookies();
-  const supabase = createClient(cookieStore);
+  const supabase = createClient();
 
   const isUserSuspended = await fetchIsUserSuspended(supabase);
 
